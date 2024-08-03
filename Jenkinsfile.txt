@@ -24,11 +24,11 @@ pipeline {
                 '''
             }
         }
-        stage('Install Dependencies') {
+        stage('Install Django') {
             steps {
                 sh '''#!/bin/bash
                 source myenv/bin/activate
-                pip install -r requirements.txt
+                pip install Django==4.2.14
                 '''
             }
         }
