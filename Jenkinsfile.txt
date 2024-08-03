@@ -48,10 +48,19 @@ pipeline {
                 '''
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'globalsonar'; // Name of your SonarQube Scanner tool
+                    withSonarQubeEnv('sonarcube') { // Name of your SonarQube server
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
     }
     post {
         always {
-            // No actions needed
             echo 'Pipeline completed'
         }
     }
