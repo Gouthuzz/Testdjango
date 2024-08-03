@@ -51,8 +51,7 @@ pipeline {
     }
     post {
         always {
-            // Archive test results and any other artifacts if needed
-            junit '**/test-results.xml'
+            // This block is now empty since we're not archiving test results
         }
     }
 }
