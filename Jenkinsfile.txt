@@ -53,7 +53,9 @@ pipeline {
                 script {
                     def scannerHome = tool 'globalsonar'; // Name of your SonarQube Scanner tool
                     withSonarQubeEnv('sonarcube') { // Name of your SonarQube server
-                        sh "${scannerHome}/bin/sonar-scanner"
+                        withEnv(["JAVA_HOME=/usr/lib/jvm/jdk-17.0.12"]) {
+                            sh "${scannerHome}/bin/sonar-scanner"
+                        }
                     }
                 }
             }
