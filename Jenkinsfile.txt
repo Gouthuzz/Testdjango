@@ -48,4 +48,11 @@ pipeline {
                 '''
             }
         }
-        
+    }
+    post {
+        always {
+            // Archive test results and any other artifacts if needed
+            junit '**/test-results.xml'
+        }
+    }
+}
