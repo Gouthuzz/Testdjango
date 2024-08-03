@@ -51,7 +51,8 @@ pipeline {
     }
     post {
         always {
-            // This block is now empty since we're not archiving test results
+            // No actions needed
+            echo 'Pipeline completed'
         }
     }
 }
