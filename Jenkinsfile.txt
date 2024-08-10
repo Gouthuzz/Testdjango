@@ -55,8 +55,19 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        // Assuming your Dockerfile is named Dockerfile in the root of your project
         sh 'docker build -t my-django-app:latest .'
+      }
+    }
+
+    stage('Push Docker Image') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+          sh '''#!/bin/bash
+            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            docker tag my-django-app:latest <gouthuzz>/my-django-app:latest
+            docker push <gouthuzz>/my-django-app:latest
+          '''
+        }
       }
     }
   }
