@@ -25,11 +25,6 @@ pipeline {
         sh 'docker run --rm my-django-app:latest python manage.py test'
       }
     }
-
-    stage('SonarQube Analysis') {
-      // No changes needed here
-    }
-
   }
   post {
     always {
