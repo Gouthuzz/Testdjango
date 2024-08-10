@@ -1,4 +1,3 @@
-Goutham Krishna, [10.08.24 21:17]
 pipeline {
     agent any
 
