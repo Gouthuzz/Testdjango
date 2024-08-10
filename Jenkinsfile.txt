@@ -56,18 +56,9 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         sh 'docker build -t my-django-app:latest .'
-      }
-    }
-
-    stage('Push Docker Image') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-          sh '''#!/bin/bash
-            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-            docker tag my-django-app:latest <kannang349@gmail.com>/my-django-app:latest
-            docker push <kannang349@gmail.com>/my-django-app:latest
-          '''
-        }
+        sh 'docker login -u gouthuzz -p Goutham@1998'
+        sh 'docker tag my-django-app:latest gouthuzz/my-django-app:latest'
+        sh 'docker push gouthuzz/my-django-app:latest'
       }
     }
   }
